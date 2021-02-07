@@ -1,0 +1,110 @@
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Convertisseur de devises</title>
+</head>
+
+<style>
+  #container {
+    width: 90%;
+    height: 60%;
+    margin-top: 10%;
+    margin-left: 5%;
+    background-color: aliceblue;
+  }
+  #entree {
+    width: 17%;
+    height: 30%;
+    margin-top: 13%;
+    margin-left: 13%;
+    font-size: 100px;
+    float: left;
+  }
+  #signe_egal {
+    width: 50px;
+    height: 50px;
+    margin: 25px;
+  }
+  select {
+    width: 17%;
+    height: 30%;
+    margin-top: 13%;
+    margin-left: 5%;
+    font-size: 100px;
+  }
+  #resultat {
+    width: 17%;
+    height: 30%;
+    position: relative;
+    bottom: 10px;
+    font-size: 100px;
+  }
+  #convertir {
+    position: fixed;
+    top: 68%;
+    left: 40%;
+    width: 20%;
+    height: 10%;
+    font-size: 40px;
+  }
+</style>
+
+<body>
+  <div id="container">
+    <input type="text" id="entree" placeholder="0">
+    <select id="from">
+      <option value="EUR">EUR</option>
+      <option value="USD">USD</option>
+      <option value="GBP">GBP</option>
+    </select>
+    <img src="equal.png" id="signe_egal" />
+    <span id="resultat">0</span>
+    <select id="to">
+      <option value="EUR">EUR</option>
+      <option value="USD" selected>USD</option>
+      <option value="GBP">GBP</option>
+    </select>
+    <button id="convertir" onclick="Convertir()">Convertir</button>
+  </div>
+</body>
+
+<script>
+
+  var eur_usd = 1.20
+  var usd_eur = 0.83
+  var eur_gbp = 0.88
+  var gbp_eur = 1.14
+  var gbp_usd = 1.37
+  var usd_gbp = 0.73
+
+  var somme = 0
+
+  function Convertir() {
+    var entree = parseFloat(document.getElementById('entree').value)
+    var from = document.getElementById('from').value
+    var to = document.getElementById('to').value
+    console.log(entree)
+    if (from == 'EUR' && to == 'USD') {
+      somme = entree * eur_usd
+    } else if (from == 'USD' && to == 'EUR') {
+      somme = entree * usd_eur
+    } else if (from == 'EUR' && to == 'GBP') {
+      somme = entree * eur_gbp
+    } else if (from == 'GBP' && to == 'EUR') {
+      somme = entree * gbp_eur
+    } else if (from == 'GBP' && to == 'USD') {
+      somme = entree * gbp_usd
+    } else if (from == 'USD' && to == 'GBP') {
+      somme = entree * usd_gbp
+    } else {
+      alert('erreur')
+    }
+    somme = somme.toFixed(2)
+    document.getElementById('resultat').innerHTML = somme
+  }
+
+</script>
+
+</html>
